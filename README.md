@@ -7,9 +7,8 @@ This project is an AI-powered voice assistant designed specifically for wealth m
 
 ```Voice Interaction:``` Users can ask financial questions via voice and receive spoken responses
 
-```Financial Expertise:``` 
 
-Specialized in wealth management topics including:
+# Specialized in wealth management topics including:
 
 Investment strategies
 
