@@ -20,6 +20,7 @@ Estate planning
 
 Financial products comparison
 
+
 ```Intent Classification:``` Uses BERT model to understand user questions and categorize them
 
 ```LLM Integration:``` Falcon-RW-1B model generates detailed financial responses
@@ -28,9 +29,9 @@ Financial products comparison
 
 ```Unity Client:``` Mobile-friendly interface for recording and playback
 
-## Technical Components
+# Technical Components
 
-# Backend (Python/Flask)
+## Backend (Python/Flask)
 ```app.py:``` Main Flask server handling audio processing and response generation
 
 ```model_handler.py:``` Manages LLM and intent classification models
@@ -43,7 +44,7 @@ Financial products comparison
 
 ```augmented-banking-dataset.py:``` Generates training data with question variations
 
-# Unity Client (C#)
+## Unity Client (C#)
 ```VoiceRecorder.cs:``` Handles microphone input and backend communication
 
 ```WavUtility.cs:``` Converts audio clips to WAV format
