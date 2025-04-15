@@ -1,7 +1,7 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM, BertTokenizer, BertForSequenceClassification
 import torch
 
-MODEL_NAME = r"C:\Users\hardi\.cache\huggingface\hub\models--tiiuae--falcon-rw-1b\snapshots\e4b9872bb803165eb22f0a867d4e6a64d34fce19"
+MODEL_NAME = r"C:\Users\<Your_UserName>\.cache\huggingface\hub\models--tiiuae--falcon-rw-1b\snapshots\e4b9872bb803165eb22f0a867d4e6a64d34fce19"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 model = AutoModelForCausalLM.from_pretrained(MODEL_NAME)
