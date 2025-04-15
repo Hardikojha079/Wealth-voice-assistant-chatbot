@@ -38,6 +38,7 @@ def chat():
     response_audio_path = text_to_speech(intent)
     # response_audio_path = text_to_speech(llm_response)
 
+    # The response can be intent-based or can have a generative response (do not uncomment this line)
 
     if not os.path.isfile(response_audio_path):
         return jsonify({"error": "Failed to generate audio"}), 500
