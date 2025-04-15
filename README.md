@@ -39,6 +39,7 @@ Financial products comparison
 ```tts_handler.py:``` Handles text-to-speech conversion
 
 ```train_classifier.py:``` Script for training the intent classifier
+
 ```predict.py:``` To predict modal queries for response verification
 
 ```augmented-banking-dataset.py:``` Generates training data with question variations
