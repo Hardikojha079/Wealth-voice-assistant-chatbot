@@ -39,6 +39,7 @@ Financial products comparison
 ```tts_handler.py:``` Handles text-to-speech conversion
 
 ```train_classifier.py:``` Script for training the intent classifier
+```predict.py:``` To predict modal queries for response verification
 
 ```augmented-banking-dataset.py:``` Generates training data with question variations
 
@@ -78,7 +79,7 @@ cd wealth-voice-assistant
 # Set up Python virtual environment
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
+venv\Scripts\activate   # Windows
 
 # Install backend dependencies
 pip install -r requirements.txt
@@ -86,6 +87,15 @@ pip install -r requirements.txt
 # Download models (ensure you have git-lfs installed)
 git lfs install
 git clone https://huggingface.co/tiiuae/falcon-rw-1b models/falcon-rw-1b
+
+# Generating training data with question variations
+python augmented-bank-dataset.py
+
+# Training model
+python train_classifier.py
+
+#Performing prediction for response verification
+python predict.py
 
 # Start the Flask backend server
 python app.py
