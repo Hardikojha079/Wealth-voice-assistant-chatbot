@@ -1,7 +1,6 @@
 import pandas as pd
 import random
 
-# Original 10 Q&A pairs
 original_qa = [
     ["What is the difference between stocks and bonds?", "Stocks represent ownership in a company, offering potential for higher returns but with higher risk. Bonds are debt instruments where you lend money to an entity for fixed interest payments, offering more stability but typically lower returns."],
     ["How should I diversify my investment portfolio?", "Effective diversification involves spreading investments across different asset classes (stocks, bonds, real estate), industries, geographic regions, and risk levels. Aim for a mix that aligns with your financial goals, time horizon, and risk tolerance."],
@@ -15,7 +14,6 @@ original_qa = [
     ["How should I prioritize between paying off debt and investing?", "Generally, prioritize high-interest debt (>7%) before investing beyond employer matches. Pay off credit cards first, then consider student loans and mortgages based on interest rates versus potential investment returns. Maintain emergency savings regardless of debt situation. Balance emotional benefits of debt freedom with mathematical optimization."]
 ]
 
-# Additional domain-specific Q&A pairs
 additional_qa = [
     ["What is a mutual fund?", "A mutual fund is an investment vehicle that pools money from many investors to purchase a diversified portfolio of stocks, bonds, or other securities. Professional fund managers make investment decisions aligned with the fund's goals, providing diversification and professional management for individual investors."],
     ["How do ETFs differ from mutual funds?", "ETFs (Exchange-Traded Funds) trade on exchanges like stocks with prices fluctuating throughout the day, while mutual funds trade once daily at the closing NAV price. ETFs typically have lower expense ratios, greater tax efficiency, lower investment minimums, and more trading flexibility than mutual funds."],
@@ -34,12 +32,10 @@ additional_qa = [
     ["How does inflation affect my retirement savings?", "Inflation erodes purchasing power over time, meaning your retirement savings need to grow faster than inflation to maintain lifestyle. A 3% annual inflation rate would cut purchasing power in half in about 24 years. Investment strategies should target returns exceeding inflation, and retirement planning should account for increasing costs throughout retirement."]
 ]
 
-# Create variations of questions - FIXED VERSION
 def create_variations(qa_pair):
     question, answer = qa_pair
     variations = []
     
-    # Different phrasings for each question type - with error checking
     if "difference between" in question.lower():
         try:
             topic = question.lower().split("difference between")[1].strip()
@@ -63,22 +59,19 @@ def create_variations(qa_pair):
             variations.append([f"Tell me about {topic}", answer])
         except IndexError:
             pass
-    
-    # Extract main topic regardless of question format
+ 
     main_topic = question.lower().replace("?", "")
     for prefix in ["what is ", "how do ", "how does ", "what's ", "what are "]:
         if main_topic.startswith(prefix):
             main_topic = main_topic[len(prefix):].strip()
             break
-    
-    # If it starts with "difference between", extract the key comparison
+
     if "difference between" in main_topic:
         try:
             main_topic = main_topic.split("difference between")[1].strip()
         except IndexError:
             pass
-    
-    # Add casual/verbal versions for all questions
+
     informal_prefixes = [
         "Hey, I was wondering about ",
         "I need some help understanding ",
@@ -104,9 +97,8 @@ def create_variations(qa_pair):
         ", could you break it down for me?",
         ", what does that mean exactly?"
     ]
-    
-    # Create verbal variations
-    for _ in range(2):  # Create 2 verbal variations per question
+ 
+    for _ in range(2): 
         prefix = random.choice(informal_prefixes)
         suffix = random.choice(informal_suffixes)
         verbal_q = f"{prefix}{main_topic}{suffix}"
@@ -114,32 +106,26 @@ def create_variations(qa_pair):
     
     return variations
 
-# Create dataset with variations and additional Q&A
 all_qa = []
 
-# Add original Q&A with variations
 for qa_pair in original_qa:
-    all_qa.append(qa_pair)  # Original question
+    all_qa.append(qa_pair) 
     variations = create_variations(qa_pair)
-    all_qa.extend(variations)  # Add variations
+    all_qa.extend(variations) 
 
-# Add additional domain-specific Q&A with variations
 for qa_pair in additional_qa:
-    all_qa.append(qa_pair)  # Original question
+    all_qa.append(qa_pair)
     variations = create_variations(qa_pair)
-    all_qa.extend(variations)  # Add variations
+    all_qa.extend(variations) 
 
-# Create and save the dataset
 df = pd.DataFrame(all_qa, columns=["question", "answer"])
 df.to_csv("augmented_wealth_management_qa.csv", index=False)
 
 print(f"Created dataset with {len(df)} question-answer pairs")
 
-# Display sample of the dataset
 print("\nSample of augmented dataset:")
 print(df.sample(10)[["question"]].to_string(index=False))
 
-# Generate dataset statistics
 original_count = len(original_qa)
 additional_count = len(additional_qa)
 variations_count = len(df) - original_count - additional_count
